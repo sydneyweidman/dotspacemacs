@@ -26,14 +26,14 @@ values."
      auto-completion
      better-defaults
      emacs-lisp
-     python
      git
-     ;; markdown
+     python
+     markdown
      org
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spell-checking
+     spell-checking
      syntax-checking
      ;; version-control
      )
@@ -108,7 +108,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Monospace"
-                               :size 14
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -239,15 +239,6 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-
-  ;; Set zoom
-  (zoom-frm-unzoom)
-  (setq zoomfactor 3)
-  (setq zoomstep 0)
-  (while (<= zoomstep zoomfactor)
-    (zoom-frm-in)
-    (setq zoomstep (1+ zoomstep))
-    )
   )
 
 (defun dotspacemacs/user-config ()
@@ -265,32 +256,36 @@ layers configuration. You are free to put any user code."
   ;; Org link behaviour
   (setq org-return-follows-link t)
  
-  ;; Org agenda files
-  (setq org-agenda-files '("~/org/work.org" "~/org/personal.org"))
-
   ;; Custom expansions
   (add-to-list 'org-structure-template-alist '("t" "#+TITLE: ?"))
 
   ;; Toggle org-clock in spaceline
   (spaceline-toggle-org-clock-on)
 
-  
 
-  )
+ ;; org-babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (sh . t)
+     (emacs-lisp . t)))
 
+  ;; Org agenda files
+  (setq org-agenda-files '("~/org/work.org" "~/org/personal.org"))
+
+  ;; Zoom in
+  ;; (zoom-frm-unzoom)
+  (setq zoom 0)
+  (while (< zoom 3)
+    (setq zoom (1+ zoom))
+  (zoom-frm-in))
+
+  ;; Scale font
+  (zoom-all-frames-in)
+  (zoom-all-frames-in)
+  (zoom-all-frames-in)
+ 
+ )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-export-babel-evaluate t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
