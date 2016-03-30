@@ -239,7 +239,19 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  )
+
+  ;; Zoom in
+  ;; (zoom-frm-unzoom)
+  (setq zoom 0)
+  (while (< zoom 3)
+    (setq zoom (1+ zoom))
+    (zoom-frm-in))
+
+  ;; Scale font
+  (zoom-all-frames-in)
+  (zoom-all-frames-in)
+  (zoom-all-frames-in)
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -251,7 +263,8 @@ layers configuration. You are free to put any user code."
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t)
-     (python . t)))
+     (python . t)
+     (html . t)))
 
   ;; Org link behaviour
   (setq org-return-follows-link t)
@@ -262,29 +275,10 @@ layers configuration. You are free to put any user code."
   ;; Toggle org-clock in spaceline
   (spaceline-toggle-org-clock-on)
 
-
- ;; org-babel languages
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     (sh . t)
-     (emacs-lisp . t)))
-
   ;; Org agenda files
   (setq org-agenda-files '("~/org/work.org" "~/org/personal.org"))
 
-  ;; Zoom in
-  ;; (zoom-frm-unzoom)
-  (setq zoom 0)
-  (while (< zoom 3)
-    (setq zoom (1+ zoom))
-  (zoom-frm-in))
 
-  ;; Scale font
-  (zoom-all-frames-in)
-  (zoom-all-frames-in)
-  (zoom-all-frames-in)
- 
  )
 
 ;; Do not write anything past this comment. This is where Emacs will
