@@ -107,8 +107,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Monospace"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -239,6 +239,15 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+
+  ;; Set zoom
+  (zoom-frm-unzoom)
+  (setq zoomfactor 3)
+  (setq zoomstep 0)
+  (while (<= zoomstep zoomfactor)
+    (zoom-frm-in)
+    (setq zoomstep (1+ zoomstep))
+    )
   )
 
 (defun dotspacemacs/user-config ()
@@ -257,7 +266,7 @@ layers configuration. You are free to put any user code."
   (setq org-return-follows-link t)
  
   ;; Org agenda files
-  (setq org-agenda-files '("~/org/work.org" "~/org/personal.org" ))
+  (setq org-agenda-files '("~/org/work.org" "~/org/personal.org"))
 
   ;; Custom expansions
   (add-to-list 'org-structure-template-alist '("t" "#+TITLE: ?"))
@@ -265,13 +274,7 @@ layers configuration. You are free to put any user code."
   ;; Toggle org-clock in spaceline
   (spaceline-toggle-org-clock-on)
 
-  ;; Set zoom
-  (setq zoomfactor 4)
-  (setq zoomstep 0)
-  (while (<= zoomstep zoomfactor)
-    (zoom-frm-in)
-    (setq zoomstep (1+ zoomstep))
-  )
+  
 
   )
 
