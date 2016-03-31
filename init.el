@@ -268,7 +268,7 @@ layers configuration. You are free to put any user code."
 
   ;; Zoom
   (setq zoom 0)
-  (setq maxzoom 4)
+  (setq maxzoom 5)
   (while (< zoom maxzoom)
     (zoom-frm-in)
     (setq zoom (1+ zoom)))
