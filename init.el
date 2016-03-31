@@ -240,17 +240,7 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
 
-  ;; Zoom in
-  ;; (zoom-frm-unzoom)
-  (setq zoom 0)
-  (while (< zoom 3)
-    (setq zoom (1+ zoom))
-    (zoom-frm-in))
 
-  ;; Scale font
-  (zoom-all-frames-in)
-  (zoom-all-frames-in)
-  (zoom-all-frames-in)
 )
 
 (defun dotspacemacs/user-config ()
@@ -263,8 +253,7 @@ layers configuration. You are free to put any user code."
    'org-babel-load-languages
    '((emacs-lisp . t)
      (shell . t)
-     (python . t)
-     (html . t)))
+     (python . t)))
 
   ;; Org link behaviour
   (setq org-return-follows-link t)
